@@ -2,38 +2,38 @@
 using namespace std;
 #include <algorithm>
 
-unsigned long int algoritmo(int n, unsigned long int counter);
+unsigned long int algorithm(int n, unsigned long int cycleLenght);
 unsigned long int UVa100(int x, int y);
+
 
 int main() {
 
-    int x, y;
-    cin>>x>>y;
-    cout<<y<<endl;
-    algoritmo(y,0);
-    //cout<<algorithm(x, 0)<<endl<<" "<<algorithm(y, 0)<<endl;
-    //cout<<UVa100(x,y);
+    int i, j;
+    while (cin>>i>>j)
+        cout<<i<<" "<<j<<" "<<UVa100(i,j)<<endl;
 
     return 0;
 }
 
-unsigned long int algoritmo(int n, unsigned long int counter){
+unsigned long int algorithm(int n, unsigned long int cycleLenght){
 
-    cout<<n<<counter<<endl;
-
-    counter++;
+    cycleLenght++;
 
     if (n==1)
-        return counter;
+        return cycleLenght;
 
-    n = n%2==0 ? 3*n+1 : n/2;
+    n = n%2==0 ? n/2 : 3*n+1;
 
-    algoritmo(n, counter);
+    return algorithm(n, cycleLenght);
 
 }
 
-unsigned long int UVa100(int x, int y){
+unsigned long int UVa100(int i, int j){
 
-    return max(algoritmo(x, 0), algoritmo(y, 0));
+    unsigned long int maxCycleLenght = algorithm(min(i, j), 0);
 
+    for (int k = min(i, j)+1; k <= max(i, j); k++)
+        maxCycleLenght = max(algorithm(k, 0), maxCycleLenght);
+
+    return maxCycleLenght;
 }
