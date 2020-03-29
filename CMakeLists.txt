@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.13)
+project(train_the_3n_1_problem_100_macarenaoyague)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(train_the_3n_1_problem_100_macarenaoyague main.cpp)
